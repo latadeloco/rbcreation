@@ -47,6 +47,7 @@ $config = [
         ],
         */
     ],
+    'language' => 'es-ES',
     'params' => $params,
 ];
 
