@@ -48,7 +48,7 @@ AppAsset::register($this);
                 ]
             ) : (
                 [
-                    'label' => '¡Bienvenido, ' . Yii::$app->user->identity->username . '!',
+                    'label' => '¡Bienvenido, ' . Yii::$app->user->identity->nombre . '!',
                     'items' => [
                         [ 'label' => 'Registros', 'url' => ['/site/about']],
                         [ 'label' => 'Otra cosa ', 'url' => ['/site/error']],

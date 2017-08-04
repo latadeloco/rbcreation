@@ -52,6 +52,7 @@ class Libro extends \yii\db\ActiveRecord
             'titulo' => 'Titulo',
             'portada' => 'Portada',
             'autor_autores' => 'Autor Autores',
+            'nombreAutores' => 'Autor',
             'autor_usuarios' => 'Autor Usuarios',
         ];
     }
@@ -72,6 +73,11 @@ class Libro extends \yii\db\ActiveRecord
         return $this->hasOne(Autor::className(), ['id' => 'autor_autores'])->inverseOf('libros');
     }
 
+    public function getNombreAutores()
+    {
+        return Autor::find()->select('nombre')->where(['id' => '1'])->scalar();
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -79,6 +85,7 @@ class Libro extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Usuario::className(), ['id' => 'autor_usuarios'])->inverseOf('libros');
     }
+
 
     /**
      * @return \yii\db\ActiveQuery

@@ -15,7 +15,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Usuario',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -53,7 +53,7 @@ $config = [
                 'twitter' => [
                     'class' => 'yii\authclient\clients\Twitter',
                     'attributeParams' => [
-                    'include_email' => 'true'
+                        'include_email' => 'true'
                     ],
                     'consumerKey' => 'twitter_consumer_key',
                     'consumerSecret' => 'twitter_consumer_secret',
