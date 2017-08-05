@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'email:email',
             'nombre',
+            'admin:boolean',
             'pass',
             'token',
         ],

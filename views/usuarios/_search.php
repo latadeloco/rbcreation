@@ -21,9 +21,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre') ?>
 
+    <?= $form->field($model, 'admin')->checkbox() ?>
+
     <?= $form->field($model, 'pass') ?>
 
-    <?= $form->field($model, 'token') ?>
+    <?php // echo $form->field($model, 'token') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
