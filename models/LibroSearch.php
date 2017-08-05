@@ -18,8 +18,8 @@ class LibroSearch extends Libro
     public function rules()
     {
         return [
-            [['id', 'autor_autores', 'autor_usuarios'], 'integer'],
-            [['titulo', 'portada'], 'safe'],
+            [['id', 'categoria', 'autor_autores', 'autor_usuarios'], 'integer'],
+            [['titulo', 'sinopsis', 'autor_autores.nombre', 'autor_usuarios.nombre', 'autor.nombre'], 'safe'],
         ];
     }
 
@@ -42,13 +42,28 @@ class LibroSearch extends Libro
     public function search($params)
     {
         $query = Libro::find();
-
+        $query->leftJoin([
+            'autores'
+        ], 'autores.id = libros.id');
+        $query->leftJoin([
+            'usuarios'
+        ], 'usuarios.id = libros.id');
+        $query->leftJoin([
+            'categorias'
+        ], 'categorias.id = libros.id');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
+        $dataProvider->setSort([
+            'attributes'=>[
+                'id',
+                'titulo',
+                'categoria.id',
+                'autor.nombre'
+            ]
+        ]);
         $this->load($params);
 
         if (!$this->validate()) {
@@ -60,12 +75,13 @@ class LibroSearch extends Libro
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'autor_autores' => $this->autor_autores,
-            'autor_usuarios' => $this->autor_usuarios,
+            'categorias.id' => $this->categoria,
         ]);
 
         $query->andFilterWhere(['like', 'titulo', $this->titulo])
-            ->andFilterWhere(['like', 'portada', $this->portada]);
+                ->andFilterWhere(['ilike', 'autores.nombre',
+                        $this->getAttribute('autor.nombre')])
+            ->andFilterWhere(['like', 'sinopsis', $this->sinopsis]);
 
         return $dataProvider;
     }

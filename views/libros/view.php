@@ -28,12 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'id',
             'titulo',
+            //'portada',
             [
-                'attribute'=>'portada',
-                'format' => ['image',['width'=>'200','height'=>'300']],
+                'label' => 'Autor',
+                'attribute' => 'autor.nombre'
             ],
-            'nombreAutores',
+            'categoria',
+            'sinopsis',
         ],
     ]) ?>
 

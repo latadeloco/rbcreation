@@ -19,11 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'titulo') ?>
 
-    <?= $form->field($model, 'portada') ?>
-
     <?= $form->field($model, 'autor_autores') ?>
 
     <?= $form->field($model, 'autor_usuarios') ?>
+
+    <?= $form->field($model, 'categoria') ?>
+
+    <?php // echo $form->field($model, 'sinopsis') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

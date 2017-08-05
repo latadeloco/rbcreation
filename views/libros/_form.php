@@ -14,11 +14,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'portada')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'autor')->dropDownList([
+                                                                        'Autores' => $model->listaAutores,
+                                                                        'Usuarios' => $model->listaAutoresUsuarios,
+                                                                ]) ?>
 
-    <?= $form->field($model, 'autor_autores')->textInput() ?>
+    <?= $form->field($model, 'portada')->fileInput() ?>
 
-    <?= $form->field($model, 'autor_usuarios')->textInput() ?>
+    <?= $form->field($model, 'categoria')->textInput() ?>
+
+    <?= $form->field($model, 'sinopsis')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

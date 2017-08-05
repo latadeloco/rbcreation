@@ -17,14 +17,22 @@ create table autores(
   , nombre varchar(255) not null
 );
 
+drop table if exists categorias cascade;
+
+create table categorias(
+    id bigserial constraint pk_categorias primary key
+  , categoria varchar(255) not null
+);
+
 drop table if exists libros cascade;
 
 create table libros(
     id bigserial constraint pk_libros primary key
   , titulo varchar(255) not null
-  , portada varchar(255)
   , autor_autores bigint references autores (id)
   , autor_usuarios bigint references usuarios (id)
+  , categoria bigint not null references categorias (id)
+  , sinopsis varchar(255)
   , check ((autor_autores is null and autor_usuarios is not null) or
           (autor_autores is not null and autor_usuarios is null))
 );
